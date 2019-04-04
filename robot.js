@@ -5,6 +5,7 @@ class Robot {
       y: null,
     }
     this._facing = null
+    this._isPlaced = false
   }
 
   get x() {
@@ -19,6 +20,10 @@ class Robot {
     return this._facing
   }
 
+  get isPlaced() {
+    return this._isPlaced
+  }
+
   set x(input) {
     this._position.x = input
   }
@@ -30,9 +35,13 @@ class Robot {
   set facing(input) {
     this._facing = input
   }
+  set isPlaced(input) {
+    this._isPlaced = input
+  }
 
   place(input) {
     input = input.split(',')
+    this.isPlaced = true
     this.x = +input[0]
     this.y = +input[1]
     this.facing = input[2]
@@ -45,8 +54,10 @@ class Robot {
       'EAST': [1,0],
       'SOUTH': [0,-1]
     }
+    
     this.x = this.x + compassValue[this.facing][0]
     this.y = this.y + compassValue[this.facing][1]
+    this.positionFixer()
   }
 
   faceTo(input) {
@@ -56,6 +67,7 @@ class Robot {
       'SOUTH': ['EAST', 'WEST'],
       'WEST': ['SOUTH', 'NORTH'],
     }
+
     if(input === 'LEFT') {
       this.facing = direction[this.facing][0]
     } else if(input === 'RIGHT') {
@@ -64,10 +76,17 @@ class Robot {
   }
 
   positionFixer() {
-    
+    this.x = this.x < 0 ? 0 : this.x
+    this.x = this.x > 4 ? 4 : this.x
+
+    this.y = this.y < 0 ? 0 : this.y
+    this.y = this.y > 4 ? 4 : this.y
   }
 
   report() {
+    if(!this.isPlaced) {
+      return 'silakan input place terlebih dahulu'
+    }
     return `${this.x},${this.y},${this.facing}`
   }
 }
