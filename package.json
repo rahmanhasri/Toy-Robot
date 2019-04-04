@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
     "url": "https://github.com/rahmanhasri/Toy-Robot/issues"
   },
   "homepage": "https://github.com/rahmanhasri/Toy-Robot#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
 }
