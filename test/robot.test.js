@@ -13,7 +13,7 @@ describe('Test Case Robot Movement', function() {
     done()
   })
 
-  // Example b
+  // // Example b
   it('Expected output 0,0,WEST', function(done) {
     robot.place('0,0,NORTH')
     robot.faceTo('LEFT')
@@ -21,7 +21,7 @@ describe('Test Case Robot Movement', function() {
     done()
   })
 
-  // Example c
+  // // Example c
   it('Expected output 3,3,NORTH', function(done) {
     robot.place('1,2,EAST')
     robot.move()

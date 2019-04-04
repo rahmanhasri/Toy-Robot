@@ -1,15 +1,40 @@
 class Robot {
   constructor() {
-    this.position = undefined
-    this.facing = undefined
+    this._position = {
+      x: null,
+      y: null,
+    }
+    this._facing = null
+  }
+
+  get x() {
+    return this._position.x
+  }
+
+  get y() {
+    return this._position.y
+  }
+
+  get facing() {
+    return this._facing
+  }
+
+  set x(input) {
+    this._position.x = input
+  }
+
+  set y(input) {
+    this._position.y = input
+  }
+
+  set facing(input) {
+    this._facing = input
   }
 
   place(input) {
     input = input.split(',')
-    this.position = {
-      x: +input[0],
-      y: +input[1],
-    }
+    this.x = +input[0]
+    this.y = +input[1]
     this.facing = input[2]
   }
 
@@ -20,21 +45,21 @@ class Robot {
       'EAST': [1,0],
       'SOUTH': [0,-1]
     }
-    this.position.x += compassValue[this.facing][0]
-    this.position.y += compassValue[this.facing][1]
+    this.x = this.x + compassValue[this.facing][0]
+    this.y = this.y + compassValue[this.facing][1]
   }
 
   faceTo(input) {
-    let compassValue = {
+    let direction = {
       'NORTH': ['WEST', 'EAST'],
       'EAST': ['NORTH', 'SOUTH'],
       'SOUTH': ['EAST', 'WEST'],
       'WEST': ['SOUTH', 'NORTH'],
     }
     if(input === 'LEFT') {
-      this.facing = compassValue[this.facing][0]
+      this.facing = direction[this.facing][0]
     } else if(input === 'RIGHT') {
-      this.facing = compassValue[this.facing][1]
+      this.facing = direction[this.facing][1]
     }
   }
 
@@ -43,7 +68,7 @@ class Robot {
   }
 
   report() {
-    return `${this.position.x},${this.position.y},${this.facing}`
+    return `${this.x},${this.y},${this.facing}`
   }
 }
 
