@@ -48,6 +48,9 @@ class Robot {
   }
 
   move() {
+    if(!this.isPlaced) {
+      return 'robot belum diposisikan'
+    }
     let compassValue = {
       'NORTH': [0,1],
       'WEST': [-1,0],
@@ -91,4 +94,4 @@ class Robot {
   }
 }
 
-module.exports = new Robot()
+module.exports = Robot

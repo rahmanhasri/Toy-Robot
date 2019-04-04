@@ -1,5 +1,5 @@
 const readline = require('readline')
-let robot = require('./robot')
+const Robot = require('./robot')
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -7,6 +7,7 @@ const rl = readline.createInterface({
   prompt: 'Toy-Robot > ',
 })
 
+let robot = new Robot()
 let info = `Selamat datang di dunia Toy_Robot!`
 let commandInfo = 'Pilihlah salah satu input berikut:\n(place, move, left, right, report, close)' 
 info += '\n' + commandInfo
@@ -41,11 +42,11 @@ rl.on('line', function(input) {
       } else {
         robot.place(placeInput.join(','))
       }
-      
+
       break;
     case 'MOVE':
       if(!robot.isPlaced) {
-        console.log('input command place terlebih dahulu')
+        console.log('robot belum diposisikan')
       } else {
         robot.move()
       }
